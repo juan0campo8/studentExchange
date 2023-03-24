@@ -1,3 +1,13 @@
+# Student Exchange Project SSW 322
+This project is has been made as an online marketplace for college students to sell and buy personal items. 
+
+# Note to Egineers
+To all Engineers currently working on this project and are looking to understand every detail of it, please follow this path in and read all comments made on those files to understand what is going on: index.html(public folder), index.js, App.js, Navbar.js.   
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
