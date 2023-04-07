@@ -1,11 +1,14 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavbarComp from "./component/Navigation/NavbarComp";
+import './App.css';
+import Header from "./Pages/Header";
+import Home from "./Pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <NavbarComp/>
+      <Header />
+      <Home />
+
     </div>
   );
 }

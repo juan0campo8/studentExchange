@@ -1,8 +1,8 @@
 import React from 'react'
-import "../pages/Header.css";
+import "./Header.css";
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import LogoDevIcon from '@mui/icons-material/LogoDev';
+
 
 function Header() {
     return (

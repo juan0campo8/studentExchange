@@ -1,17 +1,17 @@
-import React, {Component} from "react";
-import "../pages/Home.css";
+import React from "react";
+import "./Home.css"
 
 function Home() {
-    return (
-      <div className='home_container'>
-        <div className='home'>
-        <p>Home component
-        </p>
+    return(
+        <div className='home_container'>
+            <div className="home">
+                <p>
+                    Home component
+                </p>
+
+            </div>
         </div>
-        
-      </div>
-      
-      );
-  }
-  
-  export default Home;
+    );
+}
+
+export default Home;
