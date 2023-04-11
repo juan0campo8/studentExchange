@@ -15,7 +15,7 @@
     background: #9a9c9f;   
     width: 75%;
     height: 1000px;
-    background: linear-gradient(to bottom, #009dfe 0%, white 100%)
+    background: linear-gradient(to bottom, #gray 0%, white 100%)
 }
 
 p {
