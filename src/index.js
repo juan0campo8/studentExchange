@@ -1,19 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './index.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+
 import App from './App';
 import Form from './Form';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <Router>
-    <Switch>
-      <Route exact path="/" component={App} />
-      <Route path="/form" component={Form} />
-    </Switch>
-  </Router>,
+  <BrowserRouter>
+    <Route exact path="/" component={App} />
+    <Route path="/form" component={Form} />
+  </BrowserRouter>,
   document.getElementById('root')
 );
-
-reportWebVitals();
