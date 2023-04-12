@@ -34,7 +34,12 @@ const Items = ({ items }) => {
             );
         })
     ) : (
-        <p>There are no items available</p>
+        <div className="container">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+                <p style={{ fontSize: "4rem" }}>There are no items currently available. Check back later!</p>
+            </div>
+        </div>
+        
     );
     return(
         <div className="itemsCollection">

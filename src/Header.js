@@ -2,20 +2,22 @@ import React from 'react'
 import "./Header.css";
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function Header() {
+  const navigate = useNavigate();
     return (
       
 
       
       <div className='header'> 
           
-          <img  
-              className='header_logo' 
-              src='https://i.imgur.com/njMdepp.png'
-          />
+          <Link to='/'>
+            <img className='header_logo' 
+            src='https://i.imgur.com/njMdepp.png' 
+            alt='Duck Exchange' />
+         </Link>
   
                 
           <div className='header_search'> 
@@ -43,7 +45,7 @@ function Header() {
                 Orders</span>
             </div>
   
-            <div className='header_option'>
+            <div className='header_option' onClick={() => navigate('/uploadItem')}>
               <span 
               className='header_optionLineOne'>
                 Sell</span>
