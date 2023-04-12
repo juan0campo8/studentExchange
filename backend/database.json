@@ -1,1 +1,20 @@
-[]
+[[
+    {"Item_name": "Ninja Air Fryer", "Item_description": "Lightly used, 4 quart capacity, original packaging included ", "Item_price": 70, "Item_category": "Kitchen", "Image_Path": "../src"},
+    {"Item_name": "Smart Trash Can", "Item_description": "Like new, 2.5 gallon capacity, original packaging not included ", "Item_price": 30, "Item_category": "Bathroom", "Image_Path": "../src"},
+    {"Item_name": "Used Post-It Note Stack", "Item_description": "No low balls I know what I have", "Item_price": 5, "Item_category": "Office", "Image_Path": "../src"},
+    {"Item_name": "Bread Machine", "Item_description": "Used, good condition, all original accessories included", "Item_price": 50, "Item_category": "Kitchen", "Image_Path": "../src"},
+    {"Item_name": "Original Lead Paint McDonald's Garfield Mug", "Item_description": "Heavily used, no low ball offers", "Item_price": 400, "Item_category": "Dining", "Image_Path": "../src"},
+    {"Item_name": "Original Cadmium Paint McDonald's Shrek Glass", "Item_description": "My doctor said I have to get rid of it", "Item_price": 10, "Item_category": "Dining", "Image_Path": "../src"},
+    {"Item_name": "Gameboy Advanced", "Item_description": "New in original packaging, found it in my attic", "Item_price": 20, "Item_category": "Electronics", "Image_Path": "../src"},
+    {"Item_name": "Box of Chef Boyardee Beefaroni", "Item_description": "Found it in the back of the basement, probably still good", "Item_price": 30, "Item_category": "Food", "Image_Path": "../src"},
+    {"Item_name": "G-force DVD", "Item_description": "Lightly scratched but still works", "Item_price": 5, "Item_category": "Electronics", "Image_Path": "../src"},
+    {"Item_name": "John Deere Dinnerware Set", "Item_description": "Lightly scratched but no chips", "Item_price": 40, "Item_category": "Kitchen", "Image_Path": "../src"},
+    {"Item_name": "iPod Shuffle", "Item_description": "Used, probably works, no cables included", "Item_price": 20, "Item_category": "Electronics", "Image_Path": "../src"},
+    {"Item_name": "Shrek 3-D DVD", "Item_description": "3-D glasses included, scratched but works", "Item_price": 30, "Item_category": "Electronics", "Image_Path": "../src"},
+    {"Item_name": "Box of Cup Noodles", "Item_description": "I dropped out, unopened", "Item_price": 15, "Item_category": "Food", "Image_Path": "../src"},
+    {"Item_name": "Smart Trash Can", "Item_description": "Like new, 2.5 gallon capacity, original packaging not included ", "Item_price": 30, "Item_category": "Bathroom", "Image_Path": "../src"},
+    {"Item_name": "Heat Transfer Textbook", "Item_description": "Good condition apart from the teardrop stains", "Item_price": 30, "Item_category": "Office", "Image_Path": "../src"},
+    {"Item_name": "iPhone 11", "Item_description": "128 GB, Used, good condition, all original accessories included", "Item_price": 300, "Item_category": "Electronics", "Image_Path": "../src"},
+    {"Item_name": "Poo-Chi Robot Dog Toy", "Item_description": "New in package", "Item_price": 50, "Item_category": "Electronics", "Image_Path": "../src"},
+    {"Item_name": "Bag of air from Babbio Patio", "Item_description": "Enter Description Here", "Item_price": 10, "Item_category": "Collectibles", "Image_Path": "../src"}
+]]
