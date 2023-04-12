@@ -54,7 +54,7 @@ app.get("/get/searchitem", getItem)
 function getItem(request, response){
     var searchField = request.query.itemTitle;
     var json = JSON.parse (fs.readFileSync('database.json'));
-    var returnData = json.filter(jsondata => jsondata.Task === searchField);
+    var returnData = json.filter(jsondata => jsondata.Item_name === searchField);
     response.json(returnData);
 }
 

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../pages/Home.css";
+import "../pages/uploadItem.css";
 import AddInformation from "../component/AddInformation";
 import Axios from "axios";
 import { Container } from "react-bootstrap";
@@ -29,7 +29,7 @@ class UploadItem extends Component{
     render(){
         return(
             <div className="uploadItem">
-            <Container maxWidth="lg">
+            <Container maxWidth="md">
                 <AddInformation addInformation={this.addInformation} />
             </Container>
             </div>

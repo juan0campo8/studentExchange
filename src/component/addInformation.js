@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, MenuItem, TextField } from "@mui/material";
 import Axios from "axios";
 import UploadImage from "./fileUpload";
+import { Container } from "react-bootstrap";
 
 const categories = [
     {
@@ -99,6 +100,7 @@ class addInformation extends Component{
     render(){
         return(
             <div>
+            <Container maxWidth ="lg">    
                 <TextField
                     fullWidth
                     label = "Required"
@@ -153,6 +155,7 @@ class addInformation extends Component{
                 >
                 Add
                 </Button>
+                </Container>
             </div>
         );
     }
