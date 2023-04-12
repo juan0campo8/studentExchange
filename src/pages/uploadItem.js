@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "../pages/Home.css";
-import AddInformation from "../component/AddInformation";
+import AddInformation from "../component/addInformation";
 import Axios from "axios";
 import { Container } from "react-bootstrap";
 
