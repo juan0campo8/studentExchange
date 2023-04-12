@@ -5,9 +5,33 @@ import UploadImage from "./fileUpload";
 
 const categories = [
     {
-        value: "Bruh",
-        label: "S",
-    }
+        value: "Kit",
+        label: "Kitchen",
+    },
+    {
+        value: "Elec",
+        label: "Electronics",
+    },
+    {
+        value: "Din",
+        label: "Dining",
+    },
+    {
+        value: "Coll",
+        label: "Collectibles",
+    },
+    {
+        value: "Bath",
+        label: "Bathroom",
+    },
+    {
+        value: "Off",
+        label: "Office",
+    },
+    {
+        value: "Foo",
+        label: "Food",
+    },
 ];
 
 
