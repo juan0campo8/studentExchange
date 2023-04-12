@@ -3,6 +3,7 @@ import "./Header.css";
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useNavigate } from 'react-router-dom';
+import { Link } from '@mui/material';
 
 
 function Header() {
@@ -15,6 +16,7 @@ function Header() {
           <img  
               className='header_logo' 
               src='https://i.imgur.com/njMdepp.png'
+              as={Link} to={"/"}
           />
   
                 
@@ -58,6 +60,13 @@ function Header() {
   
             </div>
           </div>   
+          <div>
+            <Routes>
+              <Route path='/Header' element = {<Header/>} />
+              <Route path='/' element = {<Home/>} />
+              <Route path='/SellItem' element = {<SellItem/>} />
+            </Routes>
+          </div>
       </div>
     )
   }

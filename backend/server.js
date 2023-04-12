@@ -18,6 +18,7 @@ app.post("/add/item", addItem)
 function addItem(request, response) {
     let itemName = request.body.jsonObject.itemName;
     let itemDescription = request.body.jsonObject.itemDescription;
+    let itemCategory = request.body.jsonObject.itemCategory;
     let itemPrice = request.body.jsonObject.itemPrice;
     let imagePath = request.body.jsonObject.imagePath;
 

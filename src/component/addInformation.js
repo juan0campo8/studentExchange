@@ -12,7 +12,6 @@ const categories = [
 
 
 
-
 class addInformation extends Component{
 
     // Create a local react state of the item with it's desired properties(which we can add later)
