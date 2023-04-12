@@ -146,6 +146,13 @@ class addInformation extends Component{
                     onChange={this.state.itemDescription}
                     value={this.state.itemDescription}
                 />
+                <Button style={{ marginLeft: "10px" }}
+                onClick={this.handleSubmit}
+                variant="contained"
+                color="primary"
+                >
+                Add
+                </Button>
             </div>
         );
     }

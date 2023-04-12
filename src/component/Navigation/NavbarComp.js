@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import Home from "../../pages/Home";
-import Login from "../../pages/Login"
+import uploadItem from "../../pages/uploadItem"
 
 export default class NavbarComp extends Component{
     render(){
@@ -21,7 +21,7 @@ export default class NavbarComp extends Component{
                 <Navbar.Brand as={Link} to={"/"}> Student Exchange</Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Brand as={Link} to={"/login"}>
+                    <Navbar.Brand as={Link} to={"/uploadItem"}>
                         <img
                         alt=""
                         src="src\assets\shoppingcart.png"
@@ -38,7 +38,7 @@ export default class NavbarComp extends Component{
         <div>
             <Routes>
             <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/login" element={<Login/>}/>
+            <Route exact path="/login" element={<uploadItem/>}/>
             </Routes>
         </div>
         </Router>

@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import "../pages/Home.css";
-import addInformation from "../component/Navigation/addInformation";
+import AddInformation from "../component/AddInformation";
 import Axios from "axios";
+import { Container } from "react-bootstrap";
 
-class uploadItem extends Component{
+class UploadItem extends Component{
     addInformation = (item) =>{
         //Add logic to check for duplicate values, invalid inputs, missing inputs        
     
@@ -28,10 +29,11 @@ class uploadItem extends Component{
     render(){
         return(
             <div className="uploadItem">
-              
-                <addInformation addInformation={this.addInformation} />
+            <Container maxWidth="lg">
+                <AddInformation addInformation={this.addInformation} />
+            </Container>
             </div>
         );
     }
 }
-export default uploadItem;
+export default UploadItem;

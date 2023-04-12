@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import "../pages/Home.css";
-import AddInformation from "../component/addInformation";
+import ShowItems from "../component/ItemData";
 import Items from "../component/items";
+import {Button, Container, Grid} from "@mui/material";
 import Axios from "axios";
-import {Grid} from "@mui/material";
-import UploadImage from "../component/fileUpload";
+
+
 
 class Home extends Component{
     //Default state of this component with an empty list of items
@@ -15,10 +16,17 @@ class Home extends Component{
         };
     };
 
+    setUp = () => {
+        let itemList = ShowItems();
+        this.setState({
+            items: itemList,
+        });
+        console.log("ram");
+    }
 
     addInformation = (item) =>{
         //Add logic to check for duplicate values, invalid inputs, missing inputs        
-
+    
         const jsonObject ={
             itemName: item.itemName,
             itemDescription: item.itemDescription,
@@ -40,13 +48,11 @@ class Home extends Component{
 
     render(){
         return(
-            <div className="Home">
-              
+            <div className="Home">  
                 <Grid>
-                    <Items items = {this.state.items} />
+                    <Items items = {ShowItems} />
                 </Grid>
-
-                <AddInformation addInformation={this.addInformation} />
+                
             </div>
         );
     }

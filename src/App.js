@@ -1,8 +1,9 @@
 import React from "react";
 import './App.css';
 import Header from "./Header";
-import Home from "./Home";
-import SellItem from "./SellItem";
+import Home from "../src/pages/Home";
+import UploadItem from "./pages/UploadItem";
+
 import { Route, BrowserRouter as Router, Routes} from "react-router-dom";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/Header' element = {<Header/>} />
         <Route path='/' element = {<Home/>} />
-        <Route path='/SellItem' element = {<SellItem/>} />
+        <Route path='/uploadItem' element = {<UploadItem/>} />
         
       </Routes>
     </Router>
