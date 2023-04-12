@@ -1,12 +1,21 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavbarComp from "./component/Navigation/NavbarComp";
+import './App.css';
+import Header from "./Header";
+import Home from "./Home";
+import SellItem from "./SellItem";
+import { Route, BrowserRouter as Router, Routes} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <NavbarComp/>
-    </div>
+    <Router>
+      <Header/>
+      <Routes>
+        <Route path='/Header' element = {<Header/>} />
+        <Route path='/' element = {<Home/>} />
+        <Route path='/SellItem' element = {<SellItem/>} />
+        
+      </Routes>
+    </Router>
   );
 }
 
