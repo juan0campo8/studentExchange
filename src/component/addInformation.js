@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, MenuItem, TextField } from "@mui/material";
 import Axios from "axios";
 
+const categories = [
+    {
+        value: "Bruh",
+        label: "S",
+    }
+];
+
 class addInformation extends Component{
+
     // Create a local react state of the item with it's desired properties(which we can add later)
     constructor(){
         super();
@@ -46,7 +54,6 @@ class addInformation extends Component{
 
     handleSubmit = (event) =>{
         event.preventDefault();
-        
         this.props.addInformation(this.state);
         this.setState({
             itemName: "",
@@ -55,5 +62,58 @@ class addInformation extends Component{
             imagePath: "",
         });
     }
+    render(){
+        return(
+            <div>
+                <TextField
+                    fullWidth
+                    label = "Required"
+                    variant = "outlined"
+                    helperText="Item Name"
+                    onChange = {this.handleChangeName}
+                    value = {this.state.itemName}
+                />
+                <br></br>
+                <TextField
+                    label = "Required"
+                    variant="outlined"
+                    helperText="Item Price"
+                    type="number"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    onChange={this.handleChangePrice}
+                    value={this.state.itemPrice}
+                />
+                <TextField
+                    select
+                    label="Select"
+                    defaultValue="Bruh"
+                    helperText="Please select your category"
+                    onChange={this.handleChangeCategory}
+                    value={this.state.itemCategory}
+                >
+                    {categories.map((option) => (
+                        <MenuItem key={option.value}
+                        value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <br></br>
+                <TextField
+                    label = "Required"
+                    variant="outlined"
+                    multiline
+                    maxRows={5}
+                    helperText="Item Description"
+                    onChange={this.state.itemDescription}
+                    value={this.state.itemDescription}
+                />
+            </div>
+        );
+    }
 
 }
+
+export default addInformation;

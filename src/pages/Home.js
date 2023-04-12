@@ -18,7 +18,6 @@ class Home extends Component{
     addInformation = (item) =>{
         //Add logic to check for duplicate values, invalid inputs, missing inputs        
 
-
         const jsonObject ={
             itemName: item.itemName,
             itemDescription: item.itemDescription,
