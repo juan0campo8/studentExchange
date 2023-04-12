@@ -50,9 +50,10 @@ function getAll(request, response){
 
 app.get("/get/searchitem", getItem)
 
-    function getItem(request, response){
-        var searchField = request.query.itemTitle;
-        var json = JSON.parse (fs.readFileSync('database.json'));
-        var returnData = json.filter(jsondata => jsondata.Task === searchField);
-        response.json(returnData);
+function getItem(request, response){
+    var searchField = request.query.itemTitle;
+    var json = JSON.parse (fs.readFileSync('database.json'));
+    var returnData = json.filter(jsondata => jsondata.Task === searchField);
+    response.json(returnData);
 }
+

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, MenuItem, TextField } from "@mui/material";
 import Axios from "axios";
+import UploadImage from "./fileUpload";
 
 const categories = [
     {
@@ -8,6 +9,9 @@ const categories = [
         label: "S",
     }
 ];
+
+
+
 
 class addInformation extends Component{
 
@@ -49,6 +53,13 @@ class addInformation extends Component{
     handleChangeCategory = (event) =>{
         this.setState({
             itemCategory : event.target.value
+        });
+    };
+
+    handleChangeImage = (event) =>{
+        let path = "C:/Users/adria/student-exchange/student-exchange/src/itemImages/"
+        this.setState({
+            imagePath : path + event.target.value
         });
     };
 
@@ -100,6 +111,8 @@ class addInformation extends Component{
                         </MenuItem>
                     ))}
                 </TextField>
+                <br></br>
+                <fileUpload UploadImage/>
                 <br></br>
                 <TextField
                     label = "Required"

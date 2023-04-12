@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import "../pages/Home.css";
-import addInformation from "../component/addInformation";
+import AddInformation from "../component/AddInformation";
 import Items from "../component/items";
 import Axios from "axios";
 import {Grid} from "@mui/material";
+import UploadImage from "../component/fileUpload";
 
 class Home extends Component{
     //Default state of this component with an empty list of items
@@ -40,10 +41,12 @@ class Home extends Component{
     render(){
         return(
             <div className="Home">
-                
+              
                 <Grid>
                     <Items items = {this.state.items} />
                 </Grid>
+
+                <AddInformation addInformation={this.addInformation} />
             </div>
         );
     }
