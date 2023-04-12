@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    justify-content: center; /* centers horizontally */
+    align-items: center; /* centers vertically */
+    height: 100vh; /* set height of container to fill viewport */
+  }
+  
+  .content {
+    height: 60vh;
+    min-height: 50vh;
+    min-width: 20vw;
+    width: 30vw;
+    border-radius: 20px;
+    background: black;
+    background-color: gray;
+    
+  }
+  
