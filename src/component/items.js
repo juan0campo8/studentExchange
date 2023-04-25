@@ -1,5 +1,6 @@
 import React from "react";
 import{Card, CardContent, CardMedia, Typography, Grid, Button} from "@mui/material";
+//import addToCart from "../component/AddToCart";
 
 // This component will be used to return a list of items and present them to the user
   
@@ -8,8 +9,8 @@ const Items = ({ items }) => {
     const itemsList = items.length ? (
         items.map((item) => {
             return (
-                <Grid item>
-                    <Card style={{ maxWidth: 345 }}>
+                <Grid item xs={3}>
+                    <Card variant="outlined" style={{ width: 350, height: 375 }}>
                         <CardMedia
                         style={{ height: 0, paddingTop: '56.25%' }}
                         image={item.Image_Path}
@@ -28,6 +29,10 @@ const Items = ({ items }) => {
                         <Typography variant="subtitle1" color="textSecondary" component="p">
                             {`Category: ${item.Item_category}`}
                         </Typography>
+                        {/*
+                            Add in a button that will add an item to a users cart
+                            <Button onClick={addToCart} 
+                        */}
                         </CardContent>
                     </Card>
                 </Grid>
@@ -44,7 +49,7 @@ const Items = ({ items }) => {
     );
     return(
         <div className="itemsCollection">
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
                 {itemsList}        
             </Grid>
         </div>

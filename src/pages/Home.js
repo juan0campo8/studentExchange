@@ -49,11 +49,9 @@ class Home extends Component{
     render(){
         return(
             <div className="Home"> 
-                <Grid container spacing={2}>
-                    <ShowItems/>
-                </Grid>
-                
+                <ShowItems/>
             </div>
+            
         );
     }
 }
