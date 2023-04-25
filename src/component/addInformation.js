@@ -40,6 +40,7 @@ const categories = [
 class addInformation extends Component{
 
     // Create a local react state of the item with it's desired properties(which we can add later)
+    // Think of it as a helper class that can be changed with functions
     constructor(){
         super();
         this.state ={
@@ -81,7 +82,7 @@ class addInformation extends Component{
     };
 
     handleChangeImage = (event) =>{
-        let path = "C:/Users/adria/student-exchange/student-exchange/src/itemImages/"
+        let path = "student-exchange/src/pages/itemImages"
         this.setState({
             imagePath : path + event.target.value
         });
