@@ -36,7 +36,7 @@ const writeUsers = (_users) => {
 
 // update or insert a user object to the store
 // returns true/false to indicate success of the operation
-const upsertUser = (username, password, userDetail) => {
+const upsertUser = (username, password, email, userDetail) => {
     if(users[username]) {
         if(basicAuth.safeCompare(sha256(password), users[username].passwordHash)) {
             users[username] = { ...users[username], ...userDetail };
@@ -47,12 +47,15 @@ const upsertUser = (username, password, userDetail) => {
     } else {
         users[username] = {
             ...userDetail,
-            passwordHash: sha256(password)
+            passwordHash: sha256(password),
+            Email: email,
+            Cart_items: []
         }
     }
     writeUsers(users);
     return true;
 }
+
 
 // express middleware for validating `user` cookie against users store
 const cookieAuth = (req, res, next) => {

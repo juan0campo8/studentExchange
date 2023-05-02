@@ -7,7 +7,7 @@ import{Card, CardContent, CardMedia, Typography, Grid, Button} from "@mui/materi
 const Items = ({ items }) => {
     
     const itemsList = items.length ? (
-        items.map((item) => {
+        items.map((item) => { 
             return (
                 <Grid item xs={3}>
                     <Card variant="outlined" style={{ width: 350, height: 375 }}>

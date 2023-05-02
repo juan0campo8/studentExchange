@@ -101,6 +101,7 @@ class addInformation extends Component{
     render(){
         return(
             <div>
+            
             <Container maxWidth ="lg">    
                 <TextField
                     fullWidth
@@ -138,7 +139,7 @@ class addInformation extends Component{
                     ))}
                 </TextField>
                 <br></br>
-                <fileUpload UploadImage/>
+                <UploadImage/>
                 <br></br>
                 <TextField
                     label = "Required"
@@ -157,6 +158,18 @@ class addInformation extends Component{
                 Add
                 </Button>
                 </Container>
+                   
+                {/*
+                <TextField
+                    fullWidth
+                    label = "Required"
+                    variant = "outlined"
+                    helperText="Item Name"
+                    onChange = {this.handleChangeName}
+                    value = {this.state.itemName}
+                />
+                <UploadImage/>
+                    */}
             </div>
         );
     }

@@ -15,6 +15,8 @@ const express = require("express"),
     cors = require("cors");
 const bodyParser = require('body-parser');
 const fs = require("fs");
+const fileUpload = require('express-fileupload');
+const path = require('path');
 
 const basicAuth = require("express-basic-auth");
 var { authenticator, upsertUser, cookieAuth } = require("./authentication");
@@ -56,7 +58,38 @@ app.get("/", (req, res) => {
 res.send({ message: "Connected to Backend server!" });
 });
 
-app.post("/add/item", addItem)
+app.use(fileUpload());
+
+app.post('/fileUpload', uploadFile);
+
+function uploadFile(req, res){
+  if(!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // Get the uploaded file
+  const file = req.files.file;
+
+  // Create a unique file name
+  const fileName = `${Date.now()}_${uploadFile.fileName}`;
+
+  // Set the file path where the file will be saved
+  const filePath = path.join(__dirname, '/itemImages/', fileName);
+  console.log(filePath);
+
+  // Save the file to the server
+  file.mv(filePath, (err) => {
+    if (err) {
+      console.log(filePath);
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.send('File uploaded!');
+  });
+};
+
+app.post("/add/item", addItem);
 /*
 This post method is used to add items to the database
 The first part of the method "/add/item" is the API location which we can call in our src files to use the method
@@ -95,9 +128,9 @@ function addItem(request, response) {
         else { console.log('Successfully wrote to file') }
       });
       response.send(200);
-}
+};
 
-app.get("/get/items", getAll)
+app.get("/get/items", getAll);
 
 //This function sends back all the data in our database
 function getAll(request, response){
@@ -105,12 +138,28 @@ function getAll(request, response){
     response.json(JSON.parse(data));
 }
 
-app.get("/get/searchitem", getItem)
+app.get("/get/searchitem", getItem);
 
 function getItem(request, response){
     var searchField = request.query.itemTitle;
     var json = JSON.parse (fs.readFileSync('database.json'));
     var returnData = json.filter(jsondata => jsondata.Item_name === searchField);
     response.json(returnData);
-}
+};
+
+app.get("/get/itemCategories", getItemsByCategory);
+
+function getItemsByCategory(request, response){
+  var category = request.query.itemCategory;
+  var json = JSON.parse (fs.readFileSync('database.json'));
+  var returnData = json.filter(jsondata => jsondata.Item_category == category);
+  response.json(returnData);
+};
+
+app.put("/put/toCart", addToCart);
+
+function addToCart(request, response){
+  
+};
+
 

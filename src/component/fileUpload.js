@@ -14,7 +14,7 @@ const UploadImage = () => {
     const formData = new FormData();
     formData.append('image', selectedFile, selectedFile.name);
 
-    const url = "http://localhost:3000/fileUpload";
+    const url = "http://localhost:8080/fileUpload";
 
     Axios.post(url, formData, {
       headers: {
