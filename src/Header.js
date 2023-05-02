@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 function Header() {
-  const navigate = useNavigate();
     return (
       
 
@@ -25,16 +24,15 @@ function Header() {
               type='text' placeholder='Search Duck Exchange'/> 
               <SearchIcon className='header_searchIcon' />
           </div>
-  
-          <div className='header_nav'>      
-            <div className='header_option'>
-              <span 
-              className='header_optionLineOne'>
-                Sign</span>
-              <span 
-              className='header_optionLineTwo'>
-                In</span>
-            </div>
+          
+
+              <div className='header_nav'>      
+                <Link to='signin' className='header_option'>
+                  <span className='header_optionLineOne'>Sign</span>
+                  <span className='header_optionLineTwo'>In</span>
+              </Link>
+            
+          
   
             <div className='header_option'>
               <span 
@@ -45,14 +43,11 @@ function Header() {
                 Orders</span>
             </div>
   
-            <div className='header_option' onClick={() => navigate('/uploadItem')}>
-              <span 
-              className='header_optionLineOne'>
-                Sell</span>
-              <span 
-              className='header_optionLineTwo'>
-                item</span>
-            </div>
+            <Link to="/uploadItem" className="header_option">
+              <span className="header_optionLineOne">Sell</span>
+              <span className="header_optionLineTwo">item</span>
+            </Link>
+
   
             <div className='header_optionBasket'>
               <ShoppingBasketIcon />

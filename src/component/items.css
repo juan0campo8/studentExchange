@@ -1,0 +1,19 @@
+.itemsCollection {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.no-items-text {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000000;
+}

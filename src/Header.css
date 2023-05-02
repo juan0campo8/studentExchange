@@ -36,6 +36,7 @@
 }
 
 .header_searchIcon {
+    
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 5px;
@@ -60,6 +61,7 @@
 }
 
 .header_option {
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     margin-left: 10px;
