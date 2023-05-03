@@ -1,5 +1,5 @@
 .header {
-    height: 60 px;
+    height: 60px;
     display: flex;
     align-items: center;
     background-color: #b30838;
@@ -27,6 +27,7 @@
 }
 
 .header_searchInput{
+    box-sizing: content-box;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;    
     height: 12px;
@@ -36,7 +37,7 @@
 }
 
 .header_searchIcon {
-    
+    box-sizing: content-box;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 5px;
@@ -49,10 +50,13 @@
 .header_nav {
     display: flex;
     justify-content: space-evenly;
+    max-width: 203px;
+    max-height: 32px;
 }
 
 .header_optionLineOne {
     font-size: 10px;
+    flex-grow: 0;
 }
 
 .header_optionLineTwo {

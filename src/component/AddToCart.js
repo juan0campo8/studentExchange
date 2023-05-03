@@ -1,11 +1,11 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
  
-const addToCart = (item) => { 
+const AddToCart = (item) => { 
     const [isLoading, setIsLoading] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleClick = () => {
         setIsLoading(true);
@@ -30,7 +30,7 @@ const addToCart = (item) => {
           .catch(error => {
             console.error(error);
             setIsLoading(false);
-            history.push('/signin');
+            navigate('/signin');
           });
       };
     
@@ -40,4 +40,4 @@ const addToCart = (item) => {
         </Button>
       );
 }
-export default addToCart;
+export default AddToCart;
