@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardMedia, Typography, Grid, Button } from "@mui/material";
 import "./items.css"
 
+
 const Items = ({ items }) => {
     const itemsList = items.length ? (
         <Grid container spacing={4} direction="row" >

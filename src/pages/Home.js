@@ -12,7 +12,8 @@ class Home extends Component{
     constructor(){
         super();
         this.state = {
-            items : []
+            items : [],
+            cart : []
         };
     };
 
@@ -24,6 +25,22 @@ class Home extends Component{
         console.log("ram");
     }
 
+    addToCart = (item) => {
+        // create a copy of the current cart
+        const cart = [...this.state.cart];
+        // check if the selected item is already in the cart
+        const index = cart.findIndex((cartItem) => cartItem.id === item.id);
+        if (index >= 0) {
+          // if item is already in the cart, increase its quantity by 1
+          cart[index].qty += 1;
+        } else {
+          // if item is not in the cart, add it with quantity of 1
+          cart.push({ ...item, qty: 1 });
+        }
+        // update the cart state
+        this.setState({ cart });
+      };
+      
     addInformation = (item) =>{
         //Add logic to check for duplicate values, invalid inputs, missing inputs        
     

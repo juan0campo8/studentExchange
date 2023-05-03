@@ -9,7 +9,8 @@ import {
 } from "react-router-dom";
 
 import Home from "../../pages/Home";
-import uploadItem from "../../pages/uploadItem"
+import uploadItem from "../../pages/uploadItem";
+import Checkout from "../../pages/Checkout";
 
 export default class NavbarComp extends Component{
     render(){
@@ -39,6 +40,8 @@ export default class NavbarComp extends Component{
             <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/login" element={<uploadItem/>}/>
+            <Route exact path="/cart" element={<Cart/>}/>
+            <Route exact path="/checkout" element={<Checkout/>}/>
             </Routes>
         </div>
         </Router>
