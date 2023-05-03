@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Grid, Button } from "@mui/material";
 import "./items.css";
-import addToCart from "./AddToCart";
+import AddToCart from "./addToCart";
 
 
 const images = {};
@@ -39,7 +39,7 @@ const Items = ({ items }) => {
                                 <Typography variant="subtitle1" color="textSecondary" component="p">
                                     {`Category: ${item.Item_category}`}
                                 </Typography>
-                                <addToCart item={this.item}/>
+                                <AddToCart/>
                             </CardContent>
                         </Card>
                     </Grid>

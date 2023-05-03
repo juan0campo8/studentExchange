@@ -12,13 +12,25 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
-import { authenticate } from '../services/api';
+import * as api from '../services/api';
 
 
 const theme = createTheme();
 
+
+
+
 export default function SignIn() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  const authUser = async () => {
+    setAuthenticated(await api.authenticate(username, password));
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -26,7 +38,6 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    authenticate(data.get('email'), data.get('password'));
   };
 
   return (
@@ -47,7 +58,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={authUser} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -56,6 +67,7 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              onChange={(e) => setUsername(e.target.value)}
               autoFocus
             />
             <TextField
@@ -67,8 +79,12 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
-            
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
             <Button
               type="submit"
               fullWidth
@@ -78,7 +94,11 @@ export default function SignIn() {
               Sign In
             </Button>
             <Grid container>
-              
+              <Grid item xs>
+                <Link href="signup" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
               <Grid item>
                 <Link href="signup" variant="body2">
                   {"Don't have an account? Sign Up"}

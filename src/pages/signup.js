@@ -12,13 +12,24 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
-import { createUser } from '../services/api';
+import * as api from '../services/api';
 
 
 const theme = createTheme();
 
+
+
 export default function SignUp() {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  const createUserFun = async () => {
+      await api.createUser(username, password);
+  }
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -26,7 +37,6 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    createUser(data.get('email'), data.get('password'));
   };
 
   return (
@@ -47,7 +57,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={createUserFun} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -78,6 +88,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -89,6 +100,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               
