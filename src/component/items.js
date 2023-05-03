@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Grid, Button } from "@mui/material";
 import "./items.css";
-import AddToCart from "./addToCart";
+import AddToCart from "./AddToCart";
 
 
 const images = {};
@@ -25,6 +25,9 @@ const Items = ({ items }) => {
                                 style={{ height: 0, paddingTop: '56.25%' }}
                                 image={images[imagep]}
                                 title={item.Item_name}
+                                
+                                
+                                
                             />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
