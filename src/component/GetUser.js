@@ -1,6 +1,6 @@
 import React, {  useEffect, useState } from "react";
 import Axios from "axios";
- 
+
 const getUser = () => {
     const [user, setUser] = useState('');
 
@@ -20,4 +20,4 @@ const getUser = () => {
         {user} 
     )
 }
-export default ShowItems;
+export default getUser;

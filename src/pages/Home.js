@@ -18,14 +18,6 @@ class Home extends Component{
         };
     };
 
-    setUp = () => {
-        let itemList = ShowItems();
-        this.setState({
-            items: itemList,
-        });
-        console.log("ram");
-    }
-
     addToCart = (item) => {
         // create a copy of the current cart
         const cart = [...this.state.cart];

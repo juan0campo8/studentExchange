@@ -2,16 +2,18 @@ import Axios from "axios";
 
 const baseUrl = "http://localhost:8080";
 
+
 export const authenticate = async (username, password) => {
     try {
-        await Axios.get(`${baseUrl}/authenticate`, {
+
+        const token = await Axios.get(`${baseUrl}/authenticate`, {
             auth: { username, password },
             withCredentials: true
         });
-        return true;
+        return token;
     } catch (e) {
         console.log(e);
-        return false;
+        return null;
     }
 };
 

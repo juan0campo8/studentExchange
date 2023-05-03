@@ -32,8 +32,8 @@ app.use(cors({
 }));
 
 app.get("/authenticate", auth, (req, res) => {
-  console.log(`user logging in: ${req.auth.user}`);
   res.cookie('user', req.auth.user, { signed: true });
+  console.log(`user logging in: ${req.auth.user}`);
   res.sendStatus(200);
 });
 
@@ -49,6 +49,68 @@ app.get("/logout", (req, res) => {
   res.end();
 });
 
+
+app.get("/users/get/cart", cookieAuth, showCart);
+
+function showCart(req, res){
+  const {username} = req.signedCookies.user;
+
+  var json = JSON.parse(fs.writeFileSync('users.json'));
+
+  const user = json.users[username];
+  var returnData = user.Cart_items;
+  res.json(returnData);
+}
+
+app.put("/users/put/toCart", cookieAuth, addToCart);
+
+function addToCart(request, response){
+  console.log(request.body.jsonObject);
+  let itemName = request.body.jsonObject.itemName;
+  let itemDescription = request.body.jsonObject.itemDescription;
+  let itemCategory = request.body.jsonObject.itemCategory;
+  let itemPrice = request.body.jsonObject.itemPrice;
+  let imagePath = request.body.jsonObject.imagePath;
+
+  var newItem = {
+    Item_name: itemName,
+    Item_description: itemDescription,
+    Item_price: itemPrice,
+    Item_category: itemCategory,
+    Image_Path : imagePath
+  };
+
+  const {username} = request.signedCookies.user;
+
+  fs.readFileSync('users.json', 'utf-8', (err, data) => {
+    if (err) {
+      console.error(err);
+      response.status(500).send('Internal Server Error');
+      return;
+    }
+
+    const userdata = JSON.parse(data);
+
+    const user = userdata.users[username];
+
+    if (!user) {
+      response.status(404).send('User not found');
+      return;
+    }
+
+    user.Cart_items.push(newItem);
+
+    fs.writeFile('users.json', JSON.stringify(users), err => {
+      if (err) {
+        console.error(err);
+        response.status(500).send('Internal Server Error');
+        return;
+      }
+
+      res.send('Cart updated successfully');
+    });
+  });
+};
 
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
@@ -156,56 +218,6 @@ function getItemsByCategory(request, response){
   response.json(returnData);
 };
 
-app.put("/users/put/toCart", cookieAuth, addToCart);
 
-function addToCart(request, response){
-  let itemName = request.body.jsonObject.itemName;
-  let itemDescription = request.body.jsonObject.itemDescription;
-  let itemCategory = request.body.jsonObject.itemCategory;
-  let itemPrice = request.body.jsonObject.itemPrice;
-  let imagePath = request.body.jsonObject.imagePath;
-
-  var newItem = {
-    Item_name: itemName,
-    Item_description: itemDescription,
-    Item_price: itemPrice,
-    Item_category: itemCategory,
-    Image_Path : imagePath
-  };
-
-  const {username} = request.signedCookies.user;
-
-  fs.readFileSync('users.json', 'utf-8', (err, data) => {
-    if (err) {
-      console.error(err);
-      response.status(500).send('Internal Server Error');
-      return;
-    }
-
-    const userdata = JSON.parse(data);
-
-    const user = users.users[username];
-
-    if (!user) {
-      response.status(404).send('User not found');
-      return;
-    }
-
-    user.Cart_items.push(newItem);
-
-    fs.writeFile('users.json', JSON.stringify(users), err => {
-      if (err) {
-        console.error(err);
-        response.status(500).send('Internal Server Error');
-        return;
-      }
-
-      res.send('Cart updated successfully');
-    });
-  });
-  
-
-  
-};
 
 

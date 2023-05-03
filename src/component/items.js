@@ -40,7 +40,7 @@ const Items = ({ items }) => {
                                 <Typography variant="subtitle1" color="textSecondary" component="p">
                                     {`Category: ${item.Item_category}`}
                                 </Typography>
-                                <AddToCart/>
+                                <AddToCart item ={item}/>
                             </CardContent>
                         </Card>
                     </Grid>

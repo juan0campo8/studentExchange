@@ -10,12 +10,13 @@ const AddToCart = (item) => {
     const handleClick = () => {
         setIsLoading(true);
         const jsonObject ={
-            itemName: item.Item_name,
-            itemDescription: item.Item_description,
-            itemPrice: item.Item_price,
-            itemCategory: item.Item_category,
-            imagePath: item.ImagePath
+            itemName: item.item.Item_name,
+            itemDescription: item.item.Item_description,
+            itemPrice: item.item.Item_price,
+            itemCategory: item.item.Item_category,
+            imagePath: item.item.ImagePath
         }
+        console.log(jsonObject);
         Axios({
             method:"PUT",
             url: "http://localhost:8080/users/put/toCart",

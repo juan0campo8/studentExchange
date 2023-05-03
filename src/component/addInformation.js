@@ -37,7 +37,7 @@ const categories = [
 
 
 
-class addInformation extends Component{
+class AddInformation extends Component{
 
     // Create a local react state of the item with it's desired properties(which we can add later)
     // Think of it as a helper class that can be changed with functions
@@ -198,4 +198,4 @@ class addInformation extends Component{
 
 }
 
-export default addInformation;
+export default AddInformation;
