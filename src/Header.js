@@ -45,11 +45,12 @@ function Header() {
               <span className="header_optionLineTwo">item</span>
             </Link>
 
-  
+           
             <div className='header_optionBasket'>
+              <Link to="/cart" className="header_option"> 
               <ShoppingBasketIcon />
               <span className='header_optionLineTwo header_basketCount'>0</span>
-  
+              </Link>
             </div>
           </div>   
       </div>

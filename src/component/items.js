@@ -11,6 +11,7 @@ function importAll(r) {
 
 importAll(require.context('./itemImages', false, /\.(png|jpe?g|svg)$/));
 
+
 const Items = ({ items }) => {
     
     const itemsList = items.length ? (
