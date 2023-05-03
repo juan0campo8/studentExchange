@@ -4,7 +4,7 @@ import ShowItems from "../component/ItemData";
 import Items from "../component/items";
 import {Grid} from "@mui/material";
 import Axios from "axios";
-import UploadImage from "../component/fileUpload";
+
 
 
 

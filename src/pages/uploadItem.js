@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "../pages/uploadItem.css";
-import AddInformation from "../component/addInformation";
+import AddInformation from "../component/AddInformation";
 import Axios from "axios";
 import { Container } from "react-bootstrap";
 

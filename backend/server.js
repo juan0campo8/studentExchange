@@ -38,9 +38,9 @@ app.get("/authenticate", auth, (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-  const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
-  const [username, password] = Buffer.from(b64auth, 'base64').toString().split(':')
-  const upsertSucceeded = upsertUser(username, password)
+  const b64auth = (req.headers.authorization || '').split(' ')[1] || '';
+  const [username, password] = Buffer.from(b64auth, 'base64').toString().split(':');
+  const upsertSucceeded = upsertUser(username, password);
   res.sendStatus(upsertSucceeded ? 200 : 401);
 });
 
@@ -156,9 +156,55 @@ function getItemsByCategory(request, response){
   response.json(returnData);
 };
 
-app.put("/put/toCart", addToCart);
+app.put("/users/put/toCart", cookieAuth, addToCart);
 
 function addToCart(request, response){
+  let itemName = request.body.jsonObject.itemName;
+  let itemDescription = request.body.jsonObject.itemDescription;
+  let itemCategory = request.body.jsonObject.itemCategory;
+  let itemPrice = request.body.jsonObject.itemPrice;
+  let imagePath = request.body.jsonObject.imagePath;
+
+  var newItem = {
+    Item_name: itemName,
+    Item_description: itemDescription,
+    Item_price: itemPrice,
+    Item_category: itemCategory,
+    Image_Path : imagePath
+  };
+
+  const {username} = request.signedCookies.user;
+
+  fs.readFileSync('users.json', 'utf-8', (err, data) => {
+    if (err) {
+      console.error(err);
+      response.status(500).send('Internal Server Error');
+      return;
+    }
+
+    const userdata = JSON.parse(data);
+
+    const user = users.users[username];
+
+    if (!user) {
+      response.status(404).send('User not found');
+      return;
+    }
+
+    user.Cart_items.push(newItem);
+
+    fs.writeFile('users.json', JSON.stringify(users), err => {
+      if (err) {
+        console.error(err);
+        response.status(500).send('Internal Server Error');
+        return;
+      }
+
+      res.send('Cart updated successfully');
+    });
+  });
+  
+
   
 };
 

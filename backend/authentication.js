@@ -36,7 +36,7 @@ const writeUsers = (_users) => {
 
 // update or insert a user object to the store
 // returns true/false to indicate success of the operation
-const upsertUser = (username, password, email, userDetail) => {
+const upsertUser = (username, password, userDetail) => {
     if(users[username]) {
         if(basicAuth.safeCompare(sha256(password), users[username].passwordHash)) {
             users[username] = { ...users[username], ...userDetail };
@@ -48,7 +48,6 @@ const upsertUser = (username, password, email, userDetail) => {
         users[username] = {
             ...userDetail,
             passwordHash: sha256(password),
-            Email: email,
             Cart_items: []
         }
     }

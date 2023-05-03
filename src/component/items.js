@@ -1,17 +1,29 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Grid, Button } from "@mui/material";
-import "./items.css"
+import "./items.css";
+import addToCart from "./AddToCart";
+
+
+const images = {};
+function importAll(r) {
+  r.keys().forEach(key => images[key] = r(key));
+}
+
+importAll(require.context('./itemImages', false, /\.(png|jpe?g|svg)$/));
 
 const Items = ({ items }) => {
+    
     const itemsList = items.length ? (
         <Grid container spacing={4} direction="row" >
             {items.map((item) => {
+                let imagep = "./" + item.Image_Path;
+
                 return (
                     <Grid item xs={3} key={item.id}>
                         <Card variant="outlined" style={{ width: "100%", height: "100%" }} >
                             <CardMedia
                                 style={{ height: 0, paddingTop: '56.25%' }}
-                                image={item.Image_Path}
+                                image={images[imagep]}
                                 title={item.Item_name}
                             />
                             <CardContent>
@@ -27,8 +39,7 @@ const Items = ({ items }) => {
                                 <Typography variant="subtitle1" color="textSecondary" component="p">
                                     {`Category: ${item.Item_category}`}
                                 </Typography>
-                                {/* Add in a button that will add an item to a user's cart */}
-                                {/* <Button onClick={addToCart} /> */}
+                                <addToCart item={this.item}/>
                             </CardContent>
                         </Card>
                     </Grid>

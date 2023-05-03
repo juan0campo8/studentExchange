@@ -88,6 +88,28 @@ class addInformation extends Component{
         });
     };
 
+    addInformation = (item) =>{
+        //Add logic to check for duplicate values, invalid inputs, missing inputs        
+    
+        const jsonObject ={
+            itemName: item.itemName,
+            itemDescription: item.itemDescription,
+            itemPrice: item.itemPrice,
+            itemCategory: item.itemCategory,
+            imagePath: item.imagePath
+        }
+        Axios({
+            method:"POST",
+            url: "http://localhost:8080/add/item",
+            data: {jsonObject},
+            headers: {
+                "Content-Type":"application/json"
+            }
+        }).then(res =>{
+            console.log(res.data.message);
+        });
+    }
+
     handleSubmit = (event) =>{
         event.preventDefault();
         this.props.addInformation(this.state);

@@ -1,6 +1,6 @@
 [
-    {"Item_name": "Ninja Air Fryer", "Item_description": "Lightly used, 4 quart capacity, original packaging included ", "Item_price": 70, "Item_category": "Kitchen", "Image_Path": "../src/itemImages/fryer.jpg"},
-    {"Item_name": "Smart Trash Can", "Item_description": "Like new, 2.5 gallon capacity, original packaging not included ", "Item_price": 30, "Item_category": "Bathroom", "Image_Path": "../src/itemImages/trash.jpg"},
+    {"Item_name": "Ninja Air Fryer", "Item_description": "Lightly used, 4 quart capacity, original packaging included ", "Item_price": 70, "Item_category": "Kitchen", "Image_Path": "fryer.jpg"},
+    {"Item_name": "Smart Trash Can", "Item_description": "Like new, 2.5 gallon capacity, original packaging not included ", "Item_price": 30, "Item_category": "Bathroom", "Image_Path": "trash.jpg"},
     {"Item_name": "Used Post-It Note Stack", "Item_description": "No low balls I know what I have", "Item_price": 5, "Item_category": "Office", "Image_Path": "../src/itemImages/post.jpg"},
     {"Item_name": "Bread Machine", "Item_description": "Used, good condition, all original accessories included", "Item_price": 50, "Item_category": "Kitchen", "Image_Path": "../src/itemImages/bread.jpg"},
     {"Item_name": "Original Lead Paint McDonald's Garfield Mug", "Item_description": "Heavily used, no low ball offers", "Item_price": 400, "Item_category": "Dining", "Image_Path": "../src/itemImages/garfield.jpg"},

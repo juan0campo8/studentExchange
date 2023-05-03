@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { authenticate } from '../services/api';
 
 
 const theme = createTheme();
@@ -25,6 +26,7 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    authenticate(data.get('email'), data.get('password'));
   };
 
   return (
