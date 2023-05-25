@@ -7,6 +7,7 @@ import Axios from "axios";
 
 
 
+
 class Home extends Component{
     //Default state of this component with an empty list of items
     constructor(){
@@ -16,14 +17,6 @@ class Home extends Component{
             cart : []
         };
     };
-
-    setUp = () => {
-        let itemList = ShowItems();
-        this.setState({
-            items: itemList,
-        });
-        console.log("ram");
-    }
 
     addToCart = (item) => {
         // create a copy of the current cart

@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 var fs = require('fs');
 const basicAuth = require("express-basic-auth");
+const jwt = require('jsonwebtoken');
 
 // users holds user information that is backed up on file
 let users = {};
@@ -10,13 +11,37 @@ let users = {};
     users = JSON.parse(fs.readFileSync('users.json', 'utf8')).users;
 })()
 
+var cookieToken = '';
+
+const generateToken = (user) => {
+    const token = jwt.sign({ id: users[user] }, 'flockparty', { expiresIn: '1h' });
+    cookieToken = token;
+    return token;
+  };
+  
+  // Function to verify a JWT token
+const verifyToken = (token) => {
+    try {
+      const decoded = jwt.verify(token, 'flockparty');
+      return decoded;
+    } catch (err) {
+      return null;
+    }
+  };
+
 // performs a SHA256 hash of a string
 const sha256 = x => crypto.createHash('sha256').update(x, 'utf8').digest('hex');
 
 // looks for the username/password combo in the users store
 const authenticator = (user, password) => {
-    if(!users[user] || !user || !password) return false;
-    return basicAuth.safeCompare(sha256(password), users[user].passwordHash);
+    console.log('running');
+    if(!users[user] || !user || !password){
+    console.log(false); 
+    return false;
+    }
+    const token = generateToken(user);
+    console.log(token);
+    return token;
 }
 
 // write the users store to file
@@ -47,18 +72,24 @@ const upsertUser = (username, password, userDetail) => {
     } else {
         users[username] = {
             ...userDetail,
-            passwordHash: sha256(password)
+            passwordHash: sha256(password),
+            Cart_items: []
         }
     }
     writeUsers(users);
     return true;
 }
 
+
 // express middleware for validating `user` cookie against users store
 const cookieAuth = (req, res, next) => {
-    if(!req.signedCookies.user || !users[req.signedCookies.user]) {
+    console.log('auth cookie');
+    console.log(cookieToken);
+    const token = cookieToken;
+    if(!token || !verifyToken(token)) {
         res.sendStatus(401);
     } else {
+        console.log('it worked bitch');
         next();
     }
 }

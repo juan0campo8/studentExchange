@@ -2,7 +2,8 @@ import cartItems from "../component/cartItems";
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Cart = () => {
+
+const Cart = ({ cartItems }) => {
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0);
   
 

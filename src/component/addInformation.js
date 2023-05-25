@@ -37,7 +37,7 @@ const categories = [
 
 
 
-class addInformation extends Component{
+class AddInformation extends Component{
 
     // Create a local react state of the item with it's desired properties(which we can add later)
     // Think of it as a helper class that can be changed with functions
@@ -88,6 +88,28 @@ class addInformation extends Component{
         });
     };
 
+    addInformation = (item) =>{
+        //Add logic to check for duplicate values, invalid inputs, missing inputs        
+    
+        const jsonObject ={
+            itemName: item.itemName,
+            itemDescription: item.itemDescription,
+            itemPrice: item.itemPrice,
+            itemCategory: item.itemCategory,
+            imagePath: item.imagePath
+        }
+        Axios({
+            method:"POST",
+            url: "http://localhost:8080/add/item",
+            data: {jsonObject},
+            headers: {
+                "Content-Type":"application/json"
+            }
+        }).then(res =>{
+            console.log(res.data.message);
+        });
+    }
+
     handleSubmit = (event) =>{
         event.preventDefault();
         this.props.addInformation(this.state);
@@ -101,6 +123,7 @@ class addInformation extends Component{
     render(){
         return(
             <div>
+            
             <Container maxWidth ="lg">    
                 <TextField
                     fullWidth
@@ -138,7 +161,7 @@ class addInformation extends Component{
                     ))}
                 </TextField>
                 <br></br>
-                <fileUpload UploadImage/>
+                <UploadImage/>
                 <br></br>
                 <TextField
                     label = "Required"
@@ -157,10 +180,22 @@ class addInformation extends Component{
                 Add
                 </Button>
                 </Container>
+                   
+                {/*
+                <TextField
+                    fullWidth
+                    label = "Required"
+                    variant = "outlined"
+                    helperText="Item Name"
+                    onChange = {this.handleChangeName}
+                    value = {this.state.itemName}
+                />
+                <UploadImage/>
+                    */}
             </div>
         );
     }
 
 }
 
-export default addInformation;
+export default AddInformation;

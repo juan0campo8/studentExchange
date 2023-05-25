@@ -15,6 +15,8 @@ const express = require("express"),
     cors = require("cors");
 const bodyParser = require('body-parser');
 const fs = require("fs");
+const fileUpload = require('express-fileupload');
+const path = require('path');
 
 const basicAuth = require("express-basic-auth");
 var { authenticator, upsertUser, cookieAuth } = require("./authentication");
@@ -30,15 +32,15 @@ app.use(cors({
 }));
 
 app.get("/authenticate", auth, (req, res) => {
-  console.log(`user logging in: ${req.auth.user}`);
   res.cookie('user', req.auth.user, { signed: true });
+  console.log(`user logging in: ${req.auth.user}`);
   res.sendStatus(200);
 });
 
 app.post("/users", (req, res) => {
-  const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
-  const [username, password] = Buffer.from(b64auth, 'base64').toString().split(':')
-  const upsertSucceeded = upsertUser(username, password)
+  const b64auth = (req.headers.authorization || '').split(' ')[1] || '';
+  const [username, password] = Buffer.from(b64auth, 'base64').toString().split(':');
+  const upsertSucceeded = upsertUser(username, password);
   res.sendStatus(upsertSucceeded ? 200 : 401);
 });
 
@@ -48,6 +50,68 @@ app.get("/logout", (req, res) => {
 });
 
 
+app.get("/users/get/cart", cookieAuth, showCart);
+
+function showCart(req, res){
+  const {username} = req.signedCookies.user;
+
+  var json = JSON.parse(fs.writeFileSync('users.json'));
+
+  const user = json.users[username];
+  var returnData = user.Cart_items;
+  res.json(returnData);
+}
+
+app.put("/users/put/toCart", cookieAuth, addToCart);
+
+function addToCart(request, response){
+  console.log(request.body.jsonObject);
+  let itemName = request.body.jsonObject.itemName;
+  let itemDescription = request.body.jsonObject.itemDescription;
+  let itemCategory = request.body.jsonObject.itemCategory;
+  let itemPrice = request.body.jsonObject.itemPrice;
+  let imagePath = request.body.jsonObject.imagePath;
+
+  var newItem = {
+    Item_name: itemName,
+    Item_description: itemDescription,
+    Item_price: itemPrice,
+    Item_category: itemCategory,
+    Image_Path : imagePath
+  };
+
+  const {username} = request.signedCookies.user;
+
+  fs.readFileSync('users.json', 'utf-8', (err, data) => {
+    if (err) {
+      console.error(err);
+      response.status(500).send('Internal Server Error');
+      return;
+    }
+
+    const userdata = JSON.parse(data);
+
+    const user = userdata.users[username];
+
+    if (!user) {
+      response.status(404).send('User not found');
+      return;
+    }
+
+    user.Cart_items.push(newItem);
+
+    fs.writeFile('users.json', JSON.stringify(users), err => {
+      if (err) {
+        console.error(err);
+        response.status(500).send('Internal Server Error');
+        return;
+      }
+
+      res.send('Cart updated successfully');
+    });
+  });
+};
+
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.listen(port, () => console.log("Backend server live on " + port));
@@ -56,7 +120,38 @@ app.get("/", (req, res) => {
 res.send({ message: "Connected to Backend server!" });
 });
 
-app.post("/add/item", addItem)
+app.use(fileUpload());
+
+app.post('/fileUpload', uploadFile);
+
+function uploadFile(req, res){
+  if(!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // Get the uploaded file
+  const file = req.files.file;
+
+  // Create a unique file name
+  const fileName = `${Date.now()}_${uploadFile.fileName}`;
+
+  // Set the file path where the file will be saved
+  const filePath = path.join(__dirname, '/itemImages/', fileName);
+  console.log(filePath);
+
+  // Save the file to the server
+  file.mv(filePath, (err) => {
+    if (err) {
+      console.log(filePath);
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.send('File uploaded!');
+  });
+};
+
+app.post("/add/item", addItem);
 /*
 This post method is used to add items to the database
 The first part of the method "/add/item" is the API location which we can call in our src files to use the method
@@ -95,9 +190,9 @@ function addItem(request, response) {
         else { console.log('Successfully wrote to file') }
       });
       response.send(200);
-}
+};
 
-app.get("/get/items", getAll)
+app.get("/get/items", getAll);
 
 //This function sends back all the data in our database
 function getAll(request, response){
@@ -105,12 +200,24 @@ function getAll(request, response){
     response.json(JSON.parse(data));
 }
 
-app.get("/get/searchitem", getItem)
+app.get("/get/searchitem", getItem);
 
 function getItem(request, response){
     var searchField = request.query.itemTitle;
     var json = JSON.parse (fs.readFileSync('database.json'));
     var returnData = json.filter(jsondata => jsondata.Item_name === searchField);
     response.json(returnData);
-}
+};
+
+app.get("/get/itemCategories", getItemsByCategory);
+
+function getItemsByCategory(request, response){
+  var category = request.query.itemCategory;
+  var json = JSON.parse (fs.readFileSync('database.json'));
+  var returnData = json.filter(jsondata => jsondata.Item_category == category);
+  response.json(returnData);
+};
+
+
+
 

@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 function Header() {
+  
     return (
       
 
@@ -35,12 +36,8 @@ function Header() {
           
   
             <div className='header_option'>
-              <span 
-              className='header_optionLineOne'>
-                Your</span>
-              <span 
-              className='header_optionLineTwo'>
-                Orders</span>
+              <span className='header_optionLineOne'>Your</span>
+              <span className='header_optionLineTwo'>Orders</span>
             </div>
   
             <Link to="/uploadItem" className="header_option">
